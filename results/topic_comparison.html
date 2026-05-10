@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Colombia 2026 Government Plans -- Topic Comparison</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto;
+         padding: 30px; background: #f5f5f5; color: #333; }
+  h1 { color: #1F2937; border-bottom: 3px solid #2E75B6; padding-bottom: 10px; }
+  h2 { color: #2E75B6; margin-top: 40px; }
+  .table { border-collapse: collapse; width: 100%; background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-size: 13px; }
+  .table th { background: #2E75B6; color: white; padding: 10px 12px; text-align: left; }
+  .table td { padding: 8px 12px; border-bottom: 1px solid #eee; }
+  .table tr:hover td { background: #f0f7ff; }
+  img { max-width: 100%; border-radius: 8px;
+         box-shadow: 0 2px 8px rgba(0,0,0,0.15); margin: 20px 0; }
+  .note { background: #fff3cd; border-left: 4px solid #ffc107;
+           padding: 12px 16px; border-radius: 4px; margin: 20px 0; }
+  .section { background: white; padding: 24px; border-radius: 8px;
+              box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 30px; }
+</style>
+</head>
+<body>
+
+<h1>Colombia 2026 Government Plans -- Topic Comparison</h1>
+<p>LDA topic analysis applied to the presidential candidates' government plans.</p>
+
+<div class="note">
+  <strong>Next step:</strong> Open <code>words_per_topic.csv</code>,
+  read the top words for each topic, and assign descriptive labels in the
+  <code>TOPIC_LABELS</code> dict in the script. Re-run to get the final report
+  with meaningful labels.
+</div>
+
+<div class="section">
+  <h2>Topic distribution by candidate</h2>
+  <p>Each value represents how much weight that topic has in the candidate's plan.
+     Higher value = more emphasis on that theme.</p>
+  <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Security, Justice &amp; Anti-corruption</th>
+      <th>Social Policy</th>
+      <th>Political Identity &amp; Rhetoric</th>
+      <th>Conflict, Rights &amp; Victims</th>
+      <th>Gender &amp; Social Rights</th>
+      <th>Economic &amp; Sustainable Development</th>
+      <th>Territory, Water &amp; Rural Economy</th>
+    </tr>
+    <tr>
+      <th>Candidate</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>programa-gobierno-abelardo</th>
+      <td>0.379</td>
+      <td>0.516</td>
+      <td>0.074</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.031</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-cepeda</th>
+      <td>0.044</td>
+      <td>0.058</td>
+      <td>0.619</td>
+      <td>0.091</td>
+      <td>0.022</td>
+      <td>0.022</td>
+      <td>0.144</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-claudia</th>
+      <td>0.342</td>
+      <td>0.537</td>
+      <td>0.028</td>
+      <td>0.009</td>
+      <td>0.000</td>
+      <td>0.080</td>
+      <td>0.004</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-fajardo</th>
+      <td>0.154</td>
+      <td>0.759</td>
+      <td>0.014</td>
+      <td>0.011</td>
+      <td>0.007</td>
+      <td>0.050</td>
+      <td>0.005</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-paloma</th>
+      <td>0.326</td>
+      <td>0.456</td>
+      <td>0.098</td>
+      <td>0.029</td>
+      <td>0.000</td>
+      <td>0.091</td>
+      <td>0.000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section">
+  <h2>Comparative heatmap</h2>
+  <img src="heatmap_candidates_topics.png" alt="Heatmap candidates vs topics">
+</div>
+
+<div class="section">
+  <h2>Thematic composition (stacked bars)</h2>
+  <img src="bars_candidates_topics.png" alt="Stacked bars by candidate">
+</div>
+
+<div class="section">
+  <h2>Coherence Score</h2>
+  <p>Chart for choosing the optimal number of topics. The "elbow" of the curve
+     indicates the best balance between interpretability and detail.</p>
+  <img src="coherence_scores.png" alt="Coherence score by number of topics">
+</div>
+
+<div class="section">
+  <h2>Latent space (PCA)</h2>
+  <p>Each candidate projected onto the first two principal components of their 7-dimensional
+     topic distribution vector. Closer points = more similar thematic profiles.</p>
+  <img src="latent_space_pca.png" alt="Latent space PCA">
+</div>
+
+<div class="section">
+  <h2>Candidate similarity (cosine)</h2>
+  <p>Based on the topic distribution vectors. Values close to 1 = very similar thematic profile.</p>
+  <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>programa-gobierno-abelardo</th>
+      <th>programa-gobierno-cepeda</th>
+      <th>programa-gobierno-claudia</th>
+      <th>programa-gobierno-fajardo</th>
+      <th>programa-gobierno-paloma</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>programa-gobierno-abelardo</th>
+      <td>1.000</td>
+      <td>0.224</td>
+      <td>0.992</td>
+      <td>0.903</td>
+      <td>0.991</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-cepeda</th>
+      <td>0.224</td>
+      <td>1.000</td>
+      <td>0.161</td>
+      <td>0.125</td>
+      <td>0.284</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-claudia</th>
+      <td>0.992</td>
+      <td>0.161</td>
+      <td>1.000</td>
+      <td>0.932</td>
+      <td>0.989</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-fajardo</th>
+      <td>0.903</td>
+      <td>0.125</td>
+      <td>0.932</td>
+      <td>1.000</td>
+      <td>0.898</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-paloma</th>
+      <td>0.991</td>
+      <td>0.284</td>
+      <td>0.989</td>
+      <td>0.898</td>
+      <td>1.000</td>
+    </tr>
+  </tbody>
+</table>
+  <img src="similarity_cosine.png" alt="Cosine similarity heatmap">
+</div>
+
+<div class="section">
+  <h2>Candidate similarity (Jensen-Shannon)</h2>
+  <p>Jensen-Shannon similarity treats the topic distributions as probability distributions.
+     More robust than cosine for comparing proportions.</p>
+  <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>programa-gobierno-abelardo</th>
+      <th>programa-gobierno-cepeda</th>
+      <th>programa-gobierno-claudia</th>
+      <th>programa-gobierno-fajardo</th>
+      <th>programa-gobierno-paloma</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>programa-gobierno-abelardo</th>
+      <td>1.000</td>
+      <td>0.374</td>
+      <td>0.873</td>
+      <td>0.762</td>
+      <td>0.857</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-cepeda</th>
+      <td>0.374</td>
+      <td>1.000</td>
+      <td>0.352</td>
+      <td>0.334</td>
+      <td>0.426</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-claudia</th>
+      <td>0.873</td>
+      <td>0.352</td>
+      <td>1.000</td>
+      <td>0.817</td>
+      <td>0.874</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-fajardo</th>
+      <td>0.762</td>
+      <td>0.334</td>
+      <td>0.817</td>
+      <td>1.000</td>
+      <td>0.752</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-paloma</th>
+      <td>0.857</td>
+      <td>0.426</td>
+      <td>0.874</td>
+      <td>0.752</td>
+      <td>1.000</td>
+    </tr>
+  </tbody>
+</table>
+  <img src="similarity_js.png" alt="Jensen-Shannon similarity heatmap">
+</div>
+
+<div class="section">
+  <h2>Words per topic</h2>
+  <p>Use these words to manually label each topic in the script
+     (<code>TOPIC_LABELS</code>).</p>
+  <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>topic_id</th>
+      <th>suggested_label</th>
+      <th>top20_words</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Security, Justice &amp; Anti-corruption</td>
+      <td>seguridad, justicia, público, país, corrupción, territorio, indígena, control, energético, internacional, desarrollo, inversión, proyecto, región, ambiental, regional, efectivo, política, criminal, crimen</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Social Policy</td>
+      <td>salud, educación, social, público, país, desarrollo, acceso, territorial, productivo, servicio, empleo, cuidado, persona, territorio, mujer, joven, mayor, integral, oportunidad, política</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Political Identity &amp; Rhetoric</td>
+      <td>social, político, país, política, corrupción, histórico, territorio, lucha, violencia, cambio, popular, comunidad, víctima, público, fuerza, derecho, movimiento, historia, justicia, venir</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Conflict, Rights &amp; Victims</td>
+      <td>política, social, guerra, sociedad, derecho, víctima, país, violencia, internacional, extremo, derecha, estados, crimen, político, unidos, mundo, crisis, humanidad, madre, verdad</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Gender &amp; Social Rights</td>
+      <td>mujer, social, derecho, país, lucha, político, mucho, tanto, organización, violencia, histórico, económico, cambio, justicia, sociedad, participación, mayor, fuerza, movilización, trabajador</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Economic &amp; Sustainable Development</td>
+      <td>productivo, desarrollo, país, tierra, sostenible, ambiental, inversión, rural, económico, región, ecosistema, biodiversidad, mercado, economía, riqueza, convertir, investigación, pacífico, innovación, campesino</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Territory, Water &amp; Rural Economy</td>
+      <td>social, agua, país, seguir, campesino, territorio, cambio, potable, economía, población, pobreza, agrario, municipio, rural, avanzar, transformación, agraria, ciudad, comunidad, derecho</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</body>
+</html>

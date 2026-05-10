@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Colombia 2026 Government Plans -- Topic Comparison</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto;
+         padding: 30px; background: #f5f5f5; color: #333; }
+  h1 { color: #1F2937; border-bottom: 3px solid #2E75B6; padding-bottom: 10px; }
+  h2 { color: #2E75B6; margin-top: 40px; }
+  .table { border-collapse: collapse; width: 100%; background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-size: 13px; }
+  .table th { background: #2E75B6; color: white; padding: 10px 12px; text-align: left; }
+  .table td { padding: 8px 12px; border-bottom: 1px solid #eee; }
+  .table tr:hover td { background: #f0f7ff; }
+  img { max-width: 100%; border-radius: 8px;
+         box-shadow: 0 2px 8px rgba(0,0,0,0.15); margin: 20px 0; }
+  .note { background: #fff3cd; border-left: 4px solid #ffc107;
+           padding: 12px 16px; border-radius: 4px; margin: 20px 0; }
+  .section { background: white; padding: 24px; border-radius: 8px;
+              box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 30px; }
+</style>
+</head>
+<body>
+
+<h1>Colombia 2026 Government Plans -- Topic Comparison</h1>
+<p>LDA topic analysis applied to the presidential candidates' government plans.</p>
+
+<div class="note">
+  <strong>Next step:</strong> Open <code>words_per_topic.csv</code>,
+  read the top words for each topic, and assign descriptive labels in the
+  <code>TOPIC_LABELS</code> dict in the script. Re-run to get the final report
+  with meaningful labels.
+</div>
+
+<div class="section">
+  <h2>Topic distribution by candidate</h2>
+  <p>Each value represents how much weight that topic has in the candidate's plan.
+     Higher value = more emphasis on that theme.</p>
+  <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic 0</th>
+      <th>Topic 1</th>
+      <th>Topic 2</th>
+      <th>Topic 3</th>
+      <th>Topic 4</th>
+      <th>Topic 5</th>
+      <th>Topic 6</th>
+      <th>Topic 7</th>
+    </tr>
+    <tr>
+      <th>Candidate</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>programa-gobierno-abelardo</th>
+      <td>0.484</td>
+      <td>0.346</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.087</td>
+      <td>0.083</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-cepeda</th>
+      <td>0.004</td>
+      <td>0.052</td>
+      <td>0.208</td>
+      <td>0.391</td>
+      <td>0.102</td>
+      <td>0.013</td>
+      <td>0.191</td>
+      <td>0.039</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-claudia</th>
+      <td>0.063</td>
+      <td>0.690</td>
+      <td>0.069</td>
+      <td>0.017</td>
+      <td>0.156</td>
+      <td>0.000</td>
+      <td>0.004</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-fajardo</th>
+      <td>0.114</td>
+      <td>0.838</td>
+      <td>0.020</td>
+      <td>0.008</td>
+      <td>0.015</td>
+      <td>0.001</td>
+      <td>0.004</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>programa-gobierno-paloma</th>
+      <td>0.081</td>
+      <td>0.649</td>
+      <td>0.093</td>
+      <td>0.052</td>
+      <td>0.093</td>
+      <td>0.000</td>
+      <td>0.017</td>
+      <td>0.015</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section">
+  <h2>Comparative heatmap</h2>
+  <img src="heatmap_candidates_topics.png" alt="Heatmap candidates vs topics">
+</div>
+
+<div class="section">
+  <h2>Thematic composition (stacked bars)</h2>
+  <img src="bars_candidates_topics.png" alt="Stacked bars by candidate">
+</div>
+
+<div class="section">
+  <h2>Coherence Score</h2>
+  <p>Chart for choosing the optimal number of topics. The "elbow" of the curve
+     indicates the best balance between interpretability and detail.</p>
+  <img src="coherence_scores.png" alt="Coherence score by number of topics">
+</div>
+
+<div class="section">
+  <h2>Words per topic</h2>
+  <p>Use these words to manually label each topic in the script
+     (<code>TOPIC_LABELS</code>).</p>
+  <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>topic_id</th>
+      <th>suggested_label</th>
+      <th>top20_words</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Topic 0</td>
+      <td>educación, cuidado, jóvenes, cultura, social, mujeres, mayores, bienestar, formación, culturales, cultural, pública, trabajo, calidad, política, violencia, infancia, personas, pobreza, educativa</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Topic 1</td>
+      <td>desarrollo, país, salud, seguridad, inversión, proyectos, servicios, acceso, protección, infraestructura, política, territorial, empleo, integral, empresas, mediante, oportunidades, personas, territorios, pública</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Topic 2</td>
+      <td>agua, país, agraria, revolución, social, territorios, tierra, territorio, también, comunidades, pobreza, economía, aquí, pueblos, sino, potable, necesitamos, rurales, sociales, sido</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Topic 3</td>
+      <td>víctimas, política, corrupción, social, violencia, justicia, país, sociales, poder, petro, también, verdad, sociedad, revolución, ética, sido, uribe, hemos, sino, porque</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Topic 4</td>
+      <td>política, social, país, pobreza, iván, sociales, cepeda, castro, pacto, corrupción, seguridad, austeridad, derechos, histórico, fuerza, debemos, personas, territorios, justicia, también</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Topic 5</td>
+      <td>guerra, política, modelo, cepeda, iván, internacional, castro, social, narcotráfico, unidos, estados, drogas, está, país, global, nacionales, hemos, estadounidense, bogotá, derechos</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Topic 6</td>
+      <td>país, política, social, gran, aquí, pacto, vamos, histórico, también, corrupción, derechos, cambio, compañeros, cepeda, fuerza, castro, compañeras, iván, ciudad, sociales</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Topic 7</td>
+      <td>indígenas, pueblos, derecha, extrema, también, país, derechos, sociales, mujeres, política, gran, social, porque, historia, comunidades, compañeras, territorio, iván, sido, compañeros</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</body>
+</html>
